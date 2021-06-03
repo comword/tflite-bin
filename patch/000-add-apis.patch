@@ -5,6 +5,32 @@ index 0b2eb36f508..ee74734aa22 100644
 @@ -1 +1 @@
 -3.7.2
 +4.1.0
+diff --git a/tensorflow/lite/delegates/gpu/java/src/main/java/org/tensorflow/lite/gpu/CompatibilityList.java b/tensorflow/lite/delegates/gpu/java/src/main/java/org/tensorflow/lite/gpu/CompatibilityList.java
+index 897d2ef8bd0..b88ae3da0cc 100644
+--- a/tensorflow/lite/delegates/gpu/java/src/main/java/org/tensorflow/lite/gpu/CompatibilityList.java
++++ b/tensorflow/lite/delegates/gpu/java/src/main/java/org/tensorflow/lite/gpu/CompatibilityList.java
+@@ -46,7 +46,7 @@ import java.io.Closeable;
+ public class CompatibilityList implements Closeable {
+ 
+   private static final long INVALID_COMPATIBILITY_LIST_HANDLE = 0;
+-  private static final String TFLITE_GPU_LIB = "tensorflowlite_gpu_jni";
++  private static final String TFLITE_GPU_LIB = "tensorflowlite_jni";
+ 
+   private long compatibilityListHandle = INVALID_COMPATIBILITY_LIST_HANDLE;
+ 
+diff --git a/tensorflow/lite/delegates/gpu/java/src/main/java/org/tensorflow/lite/gpu/GpuDelegate.java b/tensorflow/lite/delegates/gpu/java/src/main/java/org/tensorflow/lite/gpu/GpuDelegate.java
+index 5eb6881be88..97a7f8ea1dd 100644
+--- a/tensorflow/lite/delegates/gpu/java/src/main/java/org/tensorflow/lite/gpu/GpuDelegate.java
++++ b/tensorflow/lite/delegates/gpu/java/src/main/java/org/tensorflow/lite/gpu/GpuDelegate.java
+@@ -33,7 +33,7 @@ import org.tensorflow.lite.annotations.UsedByReflection;
+ public class GpuDelegate implements Delegate, Closeable {
+ 
+   private static final long INVALID_DELEGATE_HANDLE = 0;
+-  private static final String TFLITE_GPU_LIB = "tensorflowlite_gpu_jni";
++  private static final String TFLITE_GPU_LIB = "tensorflowlite_jni";
+ 
+   private long delegateHandle;
+ 
 diff --git a/tensorflow/lite/java/AndroidManifest.xml b/tensorflow/lite/java/AndroidManifest.xml
 index 579021f3b3c..6656445a311 100644
 --- a/tensorflow/lite/java/AndroidManifest.xml
