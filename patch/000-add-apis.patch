@@ -33,9 +33,18 @@ index 579021f3b3c..6656445a311 100644
  
 +</manifest>
 diff --git a/tensorflow/lite/java/BUILD b/tensorflow/lite/java/BUILD
-index 1ab48302dfa..b072f9a6824 100644
+index 1ab48302dfa..f9e0fd0b172 100644
 --- a/tensorflow/lite/java/BUILD
 +++ b/tensorflow/lite/java/BUILD
+@@ -69,7 +69,7 @@ aar_with_jni(
+ 
+ android_library(
+     name = "tensorflowlite",
+-    srcs = [":java_srcs"],
++    srcs = [":java_srcs", "//tensorflow/lite/delegates/gpu/java/src/main/java/org/tensorflow/lite/gpu:gpu_delegate"],
+     manifest = "AndroidManifest.xml",
+     proguard_specs = ["proguard.flags"],
+     deps = [
 @@ -466,11 +466,14 @@ tflite_jni_binary(
      deps = [
          # Note that we explicitly include the C API here for convenience, as it
