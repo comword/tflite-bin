@@ -167,13 +167,11 @@ class InlinedVector {
   // Creates an inlined vector by copying the contents of `other` using `alloc`.
   InlinedVector(const InlinedVector& other, const allocator_type& alloc)
       : storage_(alloc) {
-    if (other.empty()) {
-      // Empty; nothing to do.
-    } else if (IsMemcpyOk::value && !other.storage_.GetIsAllocated()) {
-      // Memcpy-able and do not need allocation.
+    if (IsMemcpyOk::value && !other.storage_.GetIsAllocated()) {
       storage_.MemcpyFrom(other.storage_);
     } else {
-      storage_.InitFrom(other.storage_);
+      storage_.Initialize(IteratorValueAdapter<const_pointer>(other.data()),
+                          other.size());
     }
   }
 

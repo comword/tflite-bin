@@ -126,14 +126,11 @@ class StatefulNnApiDelegate : public TfLiteDelegate {
     // dynamic dimensions of the model.
     bool allow_dynamic_dimensions = false;
 
-    // Force using NNAPI Burst mode if supported.
+    // Use NNAPI Burst mode if supported.
     // Burst mode allows accelerators to efficiently manage resources, which
     // would significantly reduce overhead especially if the same delegate
     // instance is to be used for multiple inferences.
-    // If NNAPI devices are specified and are of NNAPI feature level 5 or
-    // higher, NNAPI delegate will automatically enable burst mode for better
-    // performance.
-    // Default: Disabled for devices with NNAPI feature level 4 or lower.
+    // Default: Disabled.
     bool use_burst_computation = false;
   };
 

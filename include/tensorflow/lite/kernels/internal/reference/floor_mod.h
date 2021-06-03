@@ -15,7 +15,6 @@ limitations under the License.
 #ifndef TENSORFLOW_LITE_KERNELS_INTERNAL_REFERENCE_FLOOR_MOD_H_
 #define TENSORFLOW_LITE_KERNELS_INTERNAL_REFERENCE_FLOOR_MOD_H_
 
-#include <cmath>
 #include <functional>
 
 namespace tflite {

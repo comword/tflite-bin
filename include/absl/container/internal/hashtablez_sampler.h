@@ -78,7 +78,6 @@ struct HashtablezInfo {
   std::atomic<size_t> total_probe_length;
   std::atomic<size_t> hashes_bitwise_or;
   std::atomic<size_t> hashes_bitwise_and;
-  std::atomic<size_t> hashes_bitwise_xor;
 
   // `HashtablezSampler` maintains intrusive linked lists for all samples.  See
   // comments on `HashtablezSampler::all_` for details on these.  `init_mu`
@@ -313,7 +312,7 @@ void SetHashtablezMaxSamples(int32_t max);
 // initialization of static storage duration objects.
 // The definition of this constant is weak, which allows us to inject a
 // different value for it at link time.
-extern "C" bool ABSL_INTERNAL_C_SYMBOL(AbslContainerInternalSampleEverything)();
+extern "C" bool AbslContainerInternalSampleEverything();
 
 }  // namespace container_internal
 ABSL_NAMESPACE_END

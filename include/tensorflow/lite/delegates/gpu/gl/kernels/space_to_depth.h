@@ -26,8 +26,6 @@ namespace gl {
 
 std::unique_ptr<NodeShader> NewSpaceToDepthNodeShader();
 
-std::unique_ptr<NodeShader> NewDepthToSpaceNodeShader();
-
 }  // namespace gl
 }  // namespace gpu
 }  // namespace tflite

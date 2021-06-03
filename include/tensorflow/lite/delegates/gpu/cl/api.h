@@ -155,11 +155,10 @@ class CLInferenceRunner : public ::tflite::gpu::InferenceRunner {
   virtual absl::Status RunWithoutExternalBufferCopy() = 0;
 
   // Copies from the external input tensor (normally CPU buffer) to the internal
-  // OpenCL buffer.  This call blocks until the copy is finished.
+  // OpenCL buffer.
   virtual absl::Status CopyFromExternalInput(int index) = 0;
 
-  // Copies from the internal output OpenCL buffer to the external output
-  // tensor.  This call blocks until the copy is finished.
+  // Copies from the internal output OpenCL buffer to the external output tensor
   virtual absl::Status CopyToExternalOutput(int index) = 0;
 };
 

@@ -58,15 +58,13 @@ class CLCommandQueue {
 
   absl::Status EnqueueEvent(CLEvent* event);
 
-  absl::Status EnqueueWriteImage(cl_mem memory, int3 region, const void* data,
-                                 bool async = false);
-  absl::Status EnqueueReadImage(cl_mem memory, int3 region, void* data,
-                                bool async = false);
+  absl::Status EnqueueWriteImage(cl_mem memory, int3 region, const void* data);
+  absl::Status EnqueueReadImage(cl_mem memory, int3 region, void* data);
 
   absl::Status EnqueueWriteBuffer(cl_mem memory, size_t size_in_bytes,
-                                  const void* data, bool async = false);
+                                  const void* data);
   absl::Status EnqueueReadBuffer(cl_mem memory, size_t size_in_bytes,
-                                 void* data, bool async = false);
+                                 void* data);
 
   absl::Status WaitForCompletion();
 

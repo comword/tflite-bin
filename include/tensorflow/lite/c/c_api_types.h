@@ -29,9 +29,7 @@ extern "C" {
 // library.
 #ifdef SWIG
 #define TFL_CAPI_EXPORT
-#elif defined(TFL_STATIC_LIBRARY_BUILD)
-#define TFL_CAPI_EXPORT
-#else  // not definded TFL_STATIC_LIBRARY_BUILD
+#else
 #if defined(_WIN32)
 #ifdef TFL_COMPILE_LIBRARY
 #define TFL_CAPI_EXPORT __declspec(dllexport)

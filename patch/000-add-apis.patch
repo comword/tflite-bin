@@ -1,0 +1,74 @@
+diff --git a/.bazelversion b/.bazelversion
+index 0b2eb36f508..ee74734aa22 100644
+--- a/.bazelversion
++++ b/.bazelversion
+@@ -1 +1 @@
+-3.7.2
++4.1.0
+diff --git a/tensorflow/lite/java/AndroidManifest.xml b/tensorflow/lite/java/AndroidManifest.xml
+index 579021f3b3c..6656445a311 100644
+--- a/tensorflow/lite/java/AndroidManifest.xml
++++ b/tensorflow/lite/java/AndroidManifest.xml
+@@ -7,7 +7,20 @@
+     <uses-sdk
+         android:targetSdkVersion="19" />
+ 
+-    <application />
++    <application>
++        <!-- Applications that target Android S+ require explicit declaration of
++                any referenced vendor-provided libraries. -->
++        <uses-native-library
++            android:name="libOpenCL.so"
++            android:required="false" />
+ 
+-</manifest>
++        <uses-native-library
++            android:name="libOpenCL-car.so"
++            android:required="false" />
++
++        <uses-native-library
++            android:name="libOpenCL-pixel.so"
++            android:required="false" />
++    </application>
+ 
++</manifest>
+diff --git a/tensorflow/lite/java/BUILD b/tensorflow/lite/java/BUILD
+index 1ab48302dfa..b072f9a6824 100644
+--- a/tensorflow/lite/java/BUILD
++++ b/tensorflow/lite/java/BUILD
+@@ -466,11 +466,14 @@ tflite_jni_binary(
+     deps = [
+         # Note that we explicitly include the C API here for convenience, as it
+         # allows bundling of the C lib w/ AAR distribution.
++        "//tensorflow/lite:framework_lib",
+         "//tensorflow/lite/c:c_api",
+         "//tensorflow/lite/c:c_api_experimental",
+         "//tensorflow/lite/delegates/nnapi/java/src/main/native",
++        "//tensorflow/lite/delegates/gpu/java/src/main/native",
+         "//tensorflow/lite/delegates/xnnpack:xnnpack_delegate",
+         "//tensorflow/lite/java/src/main/native",
++        # "//tensorflow/lite/kernels:builtin_ops_all_linked",
+     ],
+ )
+ 
+diff --git a/tensorflow/lite/java/tflite_version_script.lds b/tensorflow/lite/java/tflite_version_script.lds
+index 9634a802356..1bfc4038c04 100644
+--- a/tensorflow/lite/java/tflite_version_script.lds
++++ b/tensorflow/lite/java/tflite_version_script.lds
+@@ -5,6 +5,16 @@ VERS_1.0 {
+     JNI_OnLoad;
+     JNI_OnUnload;
+     TfLite*;
++    TfLiteGpu*;
++    *TfLite*;
++    *tflite*;
++    *TFL_*;
++    *FlatBufferModel*;
++    *BuiltinOpResolver*;
++    *Interpreter*;
++    *MutableOpResolver*;
++    *TfLite*;
++    *ErrorReporter*;
+ 
+   # Required for libunwind. This is needed if built and then run internally.
+     google_find_phdr;

@@ -159,13 +159,6 @@ class DepthwiseConv2DTester {
 
   inline bool FP16Weights() const { return fp16_weights_; }
 
-  inline DepthwiseConv2DTester& INT8Weights() {
-    int8_weights_ = true;
-    return *this;
-  }
-
-  inline bool INT8Weights() const { return int8_weights_; }
-
   inline DepthwiseConv2DTester& SparseWeights() {
     sparse_weights_ = true;
     return *this;
@@ -231,7 +224,6 @@ class DepthwiseConv2DTester {
   int32_t dilation_height_ = 1;
   int32_t dilation_width_ = 1;
   bool fp16_weights_ = false;
-  bool int8_weights_ = false;
   bool sparse_weights_ = false;
   ::tflite::Padding padding_ = ::tflite::Padding_VALID;
   ::tflite::ActivationFunctionType activation_ =

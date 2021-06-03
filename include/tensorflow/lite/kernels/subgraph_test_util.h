@@ -32,6 +32,9 @@ limitations under the License.
 namespace tflite {
 namespace subgraph_test_util {
 
+// TODO(ycling): This file should be renamed as
+// `control_flow_test_util` to avoid confusion. I'll do it immediately
+// in a separated change.
 class SubgraphBuilder {
  public:
   ~SubgraphBuilder();
