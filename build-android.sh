@@ -50,7 +50,7 @@ function buildArch() {
 	log "Building for $1 --> $2"
 	cd $TF_DIR
 
-	bazel build //tensorflow/lite:libtensorflowlite.so --config=$1 --cxxopt='--std=c++11' -c opt
+	bazel build //tensorflow/lite:libtensorflowlite.so --config=$1 --cxxopt='--std=c++14' -c opt
 	bazel build //tensorflow/lite/c:libtensorflowlite_c.so --config=$1 -c opt
 	bazel build //tensorflow/lite/delegates/gpu:libtensorflowlite_gpu_delegate.so -c opt --config $1 --copt -Os --copt -DTFLITE_GPU_BINARY_RELEASE --copt -s --strip always
 
@@ -68,17 +68,17 @@ ABIS=("arm64-v8a" "x86_64")
 DIST_DIR=`dirname ${BASH_SOURCE[0]}`
 DIST_DIR=`realpath $DIST_DIR`
 TF_DIR=`realpath $1`
-BRANCH=$2
+# BRANCH=$2
 
 if [ ! -d $TF_DIR ]; then
 	log "First param must be tensorflow repo path"
 	exit 1
 fi
 
-if [ -e $BRANCH ]; then
-	log "Second param must be a branch/tag"
-	exit 1
-fi
+# if [ -e $BRANCH ]; then
+# 	log "Second param must be a branch/tag"
+# 	exit 1
+# fi
 
 cd $DIST_DIR
 log "clean local dist"
@@ -91,8 +91,8 @@ fi
 mkdir -p libs
 
 cd $TF_DIR
-log "Switching to $BRANCH"
-git checkout $BRANCH
+# log "Switching to $BRANCH"
+# git checkout $BRANCH
 git checkout .
 git apply $DIST_DIR/patch/000-add-apis.patch
 
@@ -105,6 +105,7 @@ done
 
 collectHeaders
 
+cd $TF_DIR
 bazel build -c opt --fat_apk_cpu=x86_64,arm64-v8a --host_crosstool_top=@bazel_tools//tools/cpp:toolchain //tensorflow/lite/java:tensorflow-lite --copt -Os --copt -DTFLITE_GPU_BINARY_RELEASE --copt -s --strip always
 chmod +w $DIST_DIR/tensorflow-lite.aar
 cp $TF_DIR/bazel-bin/tensorflow/lite/java/tensorflow-lite.aar $DIST_DIR
@@ -119,4 +120,5 @@ done
 
 rm -rf aar
 
-# build-android.sh ~/gits/tensorflow tags/v2.5.0
+# run TF_IGNORE_MAX_BAZEL_VERSION=1 ./configure in tensorflow directory
+# build-android.sh ~/gits/tensorflow
