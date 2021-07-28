@@ -27,9 +27,6 @@ namespace gpu {
 GPUOperation CreateSpaceToDepth(const OperationDef& op_def,
                                 const SpaceToDepthAttributes& attr);
 
-GPUOperation CreateDepthToSpace(const OperationDef& op_def,
-                                const SpaceToDepthAttributes& attr);
-
 }  // namespace gpu
 }  // namespace tflite
 

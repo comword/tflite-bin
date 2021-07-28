@@ -83,8 +83,7 @@ class Winograd4x4To36TileX6 : public GPUOperation {
 
   void UploadBt();
 
-  std::string GetWinograd4x4To36TileX6Code(const OperationDef& op_def,
-                                           const GpuInfo& gpu_info);
+  std::string GetWinograd4x4To36TileX6Code(const OperationDef& op_def);
 
   // Must be called after kernel compilation
   int3 SelectBestWorkGroup(const KernelInfo& kernel_info) const;
@@ -151,8 +150,7 @@ class Winograd36To4x4Tile4x1 : public GPUOperation {
 
   void UploadAt();
 
-  std::string GetWinograd36To4x4Tile4x1Code(const OperationDef& op_def,
-                                            const GpuInfo& gpu_info);
+  std::string GetWinograd36To4x4Tile4x1Code(const OperationDef& op_def);
 
   // Must be called after kernel compilation
   int3 SelectBestWorkGroup(const KernelInfo& kernel_info) const;

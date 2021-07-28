@@ -72,7 +72,7 @@ class MetalArguments : public ArgumentsBinder {
                                                     std::string* code);
 
   absl::Status AllocateObjects(const Arguments& args, id<MTLDevice> device);
-  absl::Status AddObjectArgs(const GpuInfo& gpu_info, Arguments* args);
+  absl::Status AddObjectArgs(Arguments* args);
 
   void AddGPUResources(const std::string& name, const GPUResources& resources,
                        Arguments* args);

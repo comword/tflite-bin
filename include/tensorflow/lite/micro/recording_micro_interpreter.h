@@ -37,12 +37,11 @@ class RecordingMicroInterpreter : public MicroInterpreter {
   RecordingMicroInterpreter(const Model* model,
                             const MicroOpResolver& op_resolver,
                             uint8_t* tensor_arena, size_t tensor_arena_size,
-                            ErrorReporter* error_reporter,
-                            MicroProfiler* profiler = nullptr)
+                            ErrorReporter* error_reporter)
       : MicroInterpreter(model, op_resolver,
                          RecordingMicroAllocator::Create(
                              tensor_arena, tensor_arena_size, error_reporter),
-                         error_reporter, profiler),
+                         error_reporter),
         recording_micro_allocator_(
             static_cast<const RecordingMicroAllocator&>(allocator())) {}
 

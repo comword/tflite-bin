@@ -35,7 +35,8 @@ limitations under the License.
 #include "tensorflow/lite/delegates/hexagon/hexagon_delegate.h"
 #endif
 
-#if !defined(TFLITE_WITHOUT_XNNPACK)
+// TODO(b/149248802): include XNNPACK delegate when the issue is resolved.
+#if !defined(__Fuchsia__) || defined(TFLITE_WITHOUT_XNNPACK)
 #include "tensorflow/lite/delegates/xnnpack/xnnpack_delegate.h"
 #endif
 
@@ -83,7 +84,8 @@ TfLiteDelegatePtr CreateHexagonDelegate(
     const std::string& library_directory_path);
 #endif
 
-#if !defined(TFLITE_WITHOUT_XNNPACK)
+// TODO(b/149248802): include XNNPACK delegate when the issue is resolved.
+#if !defined(__Fuchsia__) || defined(TFLITE_WITHOUT_XNNPACK)
 TfLiteDelegatePtr CreateXNNPACKDelegate();
 TfLiteDelegatePtr CreateXNNPACKDelegate(
     const TfLiteXNNPackDelegateOptions* options);

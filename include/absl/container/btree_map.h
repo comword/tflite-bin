@@ -384,8 +384,9 @@ class btree_map
 
   // btree_map::equal_range()
   //
-  // Returns a half-open range [first, last), defined by a `std::pair` of two
-  // iterators, containing all elements with the passed key in the `btree_map`.
+  // Returns a closed range [first, last], defined by a `std::pair` of two
+  // iterators, containing all elements with the passed key in the
+  // `btree_map`.
   using Base::equal_range;
 
   // btree_map::find()
@@ -708,7 +709,7 @@ class btree_multimap
 
   // btree_multimap::equal_range()
   //
-  // Returns a half-open range [first, last), defined by a `std::pair` of two
+  // Returns a closed range [first, last], defined by a `std::pair` of two
   // iterators, containing all elements with the passed key in the
   // `btree_multimap`.
   using Base::equal_range;

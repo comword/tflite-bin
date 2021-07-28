@@ -22,7 +22,7 @@ namespace gpu {
 enum class CompilerOptions {
   kAdrenoFullSimd,
   kAdrenoMoreWaves,
-  kClFastRelaxedMath,
+  kClPowervrFp16,
   kClDisableOptimizations,
   kCl20,
   kCl30,
